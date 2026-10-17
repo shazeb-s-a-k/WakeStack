@@ -1,0 +1,58 @@
+﻿# =============================================================================
+# openWakeWord Training Suite .gitignore
+# =============================================================================
+
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Large Datasets (> 100 MB, cannot be uploaded to GitHub)
+# Auto-downloaded locally via `python download_datasets.py`
+*.npy
+openwakeword_features_*.npy
+validation_set_features.npy
+
+# Piper TTS Models (> 100 MB, cannot be uploaded to GitHub)
+# Auto-downloaded locally via `python setup_resources.py`
+piper_sample_generator/models/*.pt
+*.pt
+
+# Intermediate Training & Output Working Directories
+models/*
+!models/.gitkeep
+
+# Custom Trained Wake Word Models (keep strictly private & local!)
+exported_models/*
+!exported_models/.gitkeep
+*.tflite
+*.onnx
+!openwakeword/openwakeword/resources/models/embedding_model.onnx
+!openwakeword/openwakeword/resources/models/melspectrogram.onnx
+
+# Auto-generated runtime files
+generated_*.yml
+
+# Keep impulse responses for acoustic augmentation (~2.5 MB)
+!piper_sample_generator/impulses/
+!piper_sample_generator/impulses/*.wav
+
+# Python Bytecode and Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Editor and OS Artifacts
+.vscode/
+.idea/
+*.swp
+*.bak
+*.tmp
+Thumbs.db
+Desktop.ini
+.DS_Store

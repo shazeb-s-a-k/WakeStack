@@ -1,0 +1,26 @@
+﻿# Core Deep Learning & Audio Processing
+torch>=1.13.0
+torchaudio>=0.13.0
+onnx>=1.14.0
+onnxruntime>=1.14.0
+
+# Synthetic Audio Generation (Piper TTS)
+piper-tts>=1.2.0
+piper-phonemize-fix>=1.2.0
+
+# Live Microphone Testing
+sounddevice>=0.4.6
+
+# Scientific & Utility Libraries
+numpy>=1.22.0,<2.0.0
+scipy>=1.9.0
+PyYAML>=6.0
+tqdm>=4.64.0
+requests>=2.28.0
+soundfile>=0.12.0
+audiomentations>=0.30.0
+torch-audiomentations>=0.11.0
+torchinfo>=1.8.0
+torchmetrics>=0.11.0
+mutagen>=1.46.0
+webrtcvad>=2.0.10

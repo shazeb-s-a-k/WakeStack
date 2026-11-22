@@ -142,12 +142,21 @@ WakeStack/
 
 ## 🧹 Reclaiming Disk Space (`clean.bat`)
 
-During synthetic generation, openWakeWord generates temporary `.wav` audio clips (~2 to 5 GB). Once your model is trained and exported to `exported_models/`, these temporary files are no longer needed.
+During synthetic generation, openWakeWord generates temporary `.wav` audio clips and feature files (~2 to 5 GB per training run). Additionally, initial setup downloads large negative datasets (~17.5 GB). WakeStack provides a fast, interactive 1-click cleaner to reclaim disk space:
 
-- **Manual**: Double-click **`clean.bat`** anytime to purge intermediate audio clips.
-- **Automatic**: Set `AUTO_CLEAN_CLIPS = True` in `config.py` to auto-clean after training completes.
+- **Interactive Cleaner**: Double-click **`clean.bat`** and choose what to reclaim:
+  - **[1] Intermediate Training Cache only**: Removes generated `.wav` voice clips and `.npy` cache while preserving datasets and models (~2-5 GB).
+  - **[2] Setup Downloaded Datasets only**: Removes ACAV100M 2,000h and validation `.npy` files (~17.5 GB). Can be re-downloaded anytime with `python download_datasets.py`.
+  - **[3] Everything**: Cleans both intermediate cache and downloaded datasets for maximum disk reclamation (~20+ GB).
+- **Automated**: Set `AUTO_CLEAN_CLIPS = True` in `config.py` to auto-clean intermediate clips after training completes.
+- **CLI Usage**:
+  ```cmd
+  python clean_cache.py --all        # Cleans all intermediate model caches
+  python clean_cache.py --datasets   # Cleans setup-downloaded datasets
+  python clean_cache.py --full       # Cleans both cache and datasets
+  ```
 
-> **Safety Guarantee**: The cleaner will **NEVER** delete your trained `.onnx`/`.tflite` models or the 17.2 GB ACAV100M dataset.
+> **Safety Guarantee**: The cleaner will **NEVER** delete your finished trained `.onnx` and `.tflite` models in [`exported_models/`](exported_models/). Fast native deletion clears 100k+ files in seconds without freezing.
 
 ---
 
